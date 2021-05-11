@@ -11,8 +11,8 @@ To run this service, follow these steps
 >curl -d "url=https://www.irishtimes.com/" -X POST http://localhost:8080/api/v1/shorturl</br>
 
 Check the output and Open the output URL in browser.</br>
->http://localhost:8080/api/v1/longUrl?id=<tiny_url> </br>
->http://localhost:8080/api/v1/longUrl?id=3495e783 </br>
+>http://localhost:8080/api/v1/longurl?id=<tiny_url> </br>
+>http://localhost:8080/api/v1/longurl?id=3495e783 </br>
  
 
 <P>
