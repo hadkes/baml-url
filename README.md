@@ -4,15 +4,15 @@ The simple URL shortener project using Google Guava library.
 To start this service, follow these steps
 >git clone https://github.com/hadkes/baml-url.git </br>
 >cd baml-url</br>
->docker-compose up
+>docker-compose up </br>
 
 To run this service, follow these steps
->curl -D "url={url to shorten}" -X POST http://localhost:8080/api/v1/shorturl </br>
->curl -D "url=https://www.irishtimes.com/" -X POST http://localhost:8080/api/v1/shorturl
+>curl -d "url={url to shorten}" -X POST http://localhost:8080/api/v1/shorturl </br>
+>curl -d "url=https://www.irishtimes.com/" -X POST http://localhost:8080/api/v1/shorturl</br>
 
 Check the output and Open the output URL in browser.</br>
 >http://localhost:8080/api/v1/longUrl?id=<tiny_url> </br>
->http://localhost:8080/api/v1/longUrl?id=3495e783
+>http://localhost:8080/api/v1/longUrl?id=3495e783 </br>
  
 
 <P>
