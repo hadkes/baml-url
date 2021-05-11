@@ -21,5 +21,5 @@ With more time following can be done
 such as Radis or GemFire with Database.
 </br>2. Third party library is used to generate tiny URL, other options, such as hashcode or UUID 
 can be explored.
-</br>3. Extensive unit and mock test cab be written. 
+</br>3. Extensive unit and mock test can be written. 
 </P>
