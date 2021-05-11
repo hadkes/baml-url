@@ -20,7 +20,6 @@ public class UrlShortenerController {
     @Autowired
     private UrlShortenerService service;
 
-    @GetMapping("/")
     @PostMapping("/shorturl")
     public String tinyUrl(HttpServletRequest httpRequest, UserRequest request) {
         System.out.println("Request received to shorten URL. The original URL is "+request.getUrl());
