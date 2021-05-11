@@ -7,6 +7,7 @@
     <groupId>baml.assignment</groupId>
     <artifactId>baml-url</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>9</maven.compiler.source>
@@ -18,8 +19,8 @@
         <version>2.4.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <name>spring-boot</name>
-    <description>Demo project for Spring Boot</description>
+    <name>BAML Assignment</name>
+    <description>A Spring Boot URL Shortener project for BAML assignment.</description>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -31,9 +32,14 @@
             <version>30.1.1-jre</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
         </dependency>
     </dependencies>
     <build>
@@ -41,16 +47,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.4.5</version>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <configuration>
+                            <classifier>task</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>30.1.1-jre</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 </project>

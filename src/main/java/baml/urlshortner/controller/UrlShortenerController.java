@@ -2,7 +2,12 @@ package baml.urlshortner.controller;
 
 import baml.urlshortner.model.UserRequest;
 import baml.urlshortner.service.UrlShortenerService;
+import io.swagger.annotations.Contact;
+import io.swagger.annotations.Info;
+import io.swagger.annotations.License;
+import io.swagger.annotations.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,28 +21,28 @@ public class UrlShortenerController {
     private UrlShortenerService service;
 
     @GetMapping("/")
-    public String info(){
-        return "Usage: \n" +
-                "\t 1. Call /api/v1/shortUrl using POST by sending long URL as url." +
-                "\t 2. Call output given by previous call and that will redirect to original long url.";
-    }
-
-    @PostMapping("/shortUrl")
+    @PostMapping("/shorturl")
     public String tinyUrl(HttpServletRequest httpRequest, UserRequest request) {
-        System.out.println("Inside controller. Method tinyUrl is called.");
+        System.out.println("Request received to shorten URL. The original URL is "+request.getUrl());
         String requestUrl = httpRequest.getRequestURL().toString();
+
+        //TODO: this should not use hardcoded string.
         String requestedUri = requestUrl.substring(0, requestUrl.indexOf(httpRequest.getRequestURI(), "http://".length()));
         return service.convertToShortUrl(requestedUri, request.getUrl());
     }
 
-    @GetMapping("/longUrl")
+    @GetMapping("/longurl")
     public void originalUrl(@RequestParam String id, HttpServletResponse response) throws Exception{
-        System.out.println("Inside controller. Method originalUrl is called.");
+        System.out.println("Request received to redirect to original url from short url. The hashcode for shorten url is "+id);
         final String longUrl = service.convertToLongUrl(id);
+
+        // if hashcode found in cache then redirect to the site else show error.
         if (longUrl != null) {
+            System.out.println("Shorten URL found in local cache. Now, redirecting to original URL.");
             response.addHeader("Location", longUrl);
             response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
         } else {
+            System.out.println("Oops, someone messed up with shorten URL. Please make sure to call correct shorten URL.");
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
